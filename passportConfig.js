@@ -16,15 +16,14 @@ function initialize(passport) {
 
                     bcrypt.compare(password, user.password, (err, isMatch) => {
                         if (err) {
-                            throw err;
+                            console.log(err);
                         }
-
-                        if (isMatch) {
+                        
+                        if (isMatch == true) {
                             return done(null, user);
                         } else {
                             return done(null, false, { message: "Password is not correct" });
                         }
-
 
                     })
                 } else {
@@ -40,7 +39,6 @@ function initialize(passport) {
             {
                 usernameField: "email",
                 passwordField: "password",
-
             },
             authenticateUser
         )

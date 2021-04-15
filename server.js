@@ -40,7 +40,7 @@ app.get('/users/login', (req, res) => {
 })
 
 app.get('/users/dashboard', (req, res) => {
-    res.render("dashboard", { user: req.user.name });
+    res.render("dashboard", { user: "kyle" });
 })
 
 
@@ -105,11 +105,12 @@ app.post("/users/register", async (req, res) => {
 
 app.post(
     "/users/login",
-    passport.authenticate("local", {
+    passport.authenticate('local', {
         successRedirect: '/users/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
-    }));
+    })
+);
 
 
 app.listen(PORT, () => {

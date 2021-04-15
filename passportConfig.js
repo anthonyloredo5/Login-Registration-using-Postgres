@@ -1,5 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
-const { pool } = require("./dbConfig");
+const pool = require("./dbConfig");
 const bcrypt = require("bcrypt");
 
 function initialize(passport) {
@@ -46,7 +46,7 @@ function initialize(passport) {
         )
     );
 
-    passport.serializeuser((user, done) => (done, user.id));
+    passport.serializeUser((user, done) => (done, user.id));
     passport.deserializeUser((id, done) => {
         pool.query(
             `SELECT * FROM users WHERE id = $1`,
@@ -61,3 +61,5 @@ function initialize(passport) {
     });
 
 }
+
+module.exports = initialize;
